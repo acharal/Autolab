@@ -125,6 +125,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_ldap_authenticatable (0.8.7)
+      devise (>= 3.4.1)
+      net-ldap (>= 0.16.0)
     diff-lcs (1.5.0)
     docile (1.1.5)
     doorkeeper (5.6.6)
@@ -450,6 +453,7 @@ DEPENDENCIES
   coffee-rails (>= 4.0.0)
   database_cleaner
   devise (>= 4.5.0)
+  devise_ldap_authenticatable
   doorkeeper
   dotenv-rails
   dynamic_form
