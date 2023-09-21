@@ -56,12 +56,14 @@
   <% end %>
 <% end %>
 <% if @user == current_user %>
+  <% if false %>
   <hr>
   <h4>Private Settings</h4>
   <%= link_to edit_user_registration_path do %>
     <span class="btn primary">
       Change Password
     </span>
+  <% end %>
   <% end %>
   <% if GithubIntegration.connected %>
     <% if @user.github_integration && @user.github_integration.is_connected %>

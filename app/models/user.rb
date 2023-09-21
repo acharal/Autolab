@@ -5,9 +5,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+  devise :ldap_authenticatable, 
+         :rememberable, :trackable, :validatable
 
   devise :omniauthable, omniauth_providers: [:shibboleth, :google_oauth2]
 
@@ -79,6 +78,15 @@ class User < ApplicationRecord
     self.last_name = "(blank)" if last_name.nil?
 
     save
+  end
+  
+  def ldap_before_save
+    self.first_name = Devise::LDAP::Adapter.get_ldap_param(self.email, "givenName").first
+    self.last_name = Devise::LDAP::Adapter.get_ldap_param(self.email, "sn").first
+  end
+
+  def skip_confirmation!
+
   end
 
   def self.find_for_facebook_oauth(auth, _signed_in_resource = nil)

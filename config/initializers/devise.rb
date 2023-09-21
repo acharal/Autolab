@@ -218,6 +218,12 @@ Devise.setup do |config|
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 
+  config.ldap_logger = true
+  config.ldap_create_user = true
+  config.ldap_update_password = false
+  config.ldap_use_admin_to_bind = true
+  #config.ldap_auth_username_builder = Proc.new() {|attribute, login, ldap| "#{attribute}=#{login.split("@")[0]},#{ldap.base}"}
+
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

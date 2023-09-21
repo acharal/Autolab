@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2024_04_06_174050) do
     t.text "embedded_quiz_form_data"
     t.boolean "embedded_quiz"
     t.boolean "github_submission_enabled", default: true
+    t.boolean "github_submission_enabled", default: true
     t.boolean "allow_student_assign_group", default: true
     t.boolean "is_positive_grading", default: false
     t.boolean "disable_network", default: false
@@ -225,8 +226,8 @@ ActiveRecord::Schema.define(version: 2024_04_06_174050) do
     t.string "context_id"
     t.integer "course_id"
     t.datetime "last_synced"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "membership_url"
     t.string "platform"
     t.boolean "auto_sync", default: false
@@ -326,7 +327,7 @@ ActiveRecord::Schema.define(version: 2024_04_06_174050) do
     t.integer "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "until", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "until"
     t.boolean "disabled", default: false
   end
 
@@ -435,6 +436,8 @@ ActiveRecord::Schema.define(version: 2024_04_06_174050) do
     t.index ["risk_condition_id"], name: "index_watchlist_instances_on_risk_condition_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "github_integrations", "users"
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_device_flow_requests", "oauth_applications", column: "application_id"
 end
